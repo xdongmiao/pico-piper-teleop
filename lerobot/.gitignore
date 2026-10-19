@@ -176,3 +176,6 @@ outputs/
 *.urdf
 *.xml
 *.part
+
+# This source distribution excludes upstream LFS/data test artifacts.
+/tests/artifacts/
