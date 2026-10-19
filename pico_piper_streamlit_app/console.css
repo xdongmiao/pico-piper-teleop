@@ -1,0 +1,125 @@
+:root {
+  --capture-ink: #183334;
+  --capture-muted: #657d7d;
+  --capture-accent: #087e79;
+  --capture-line: #dce6e4;
+}
+
+.stApp { background: #f3f6f5; }
+[data-testid="stHeader"] { background: rgba(243, 246, 245, .94); }
+[data-testid="stMainBlockContainer"] {
+  max-width: 1600px;
+  padding-top: 2.4rem;
+  padding-bottom: 4rem;
+}
+[data-testid="stSidebar"] {
+  background: #132e30;
+  border-right: 1px solid #214345;
+}
+[data-testid="stSidebar"] [data-testid="stSidebarNav"] {
+  padding-top: 2.6rem;
+}
+[data-testid="stSidebar"] [data-testid="stSidebarNavLink"] {
+  color: #d9e8e5;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  margin: .35rem .6rem;
+  padding: .7rem .85rem;
+  transition: background .15s ease, border-color .15s ease;
+}
+[data-testid="stSidebar"] [data-testid="stSidebarNavLink"] span { color: inherit; }
+[data-testid="stSidebar"] [data-testid="stSidebarNavLink"]:hover {
+  background: #1c3d3f;
+  border-color: #365859;
+}
+[data-testid="stSidebar"] [data-testid="stSidebarNavLink"][aria-current="page"] {
+  color: #e9fffa;
+  background: #245052;
+  border-color: #3b7270;
+  box-shadow: inset 3px 0 #6ed7c4;
+}
+[data-testid="stSidebar"] button { color: #e1efeb; }
+
+.capture-masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0 0 1.4rem;
+  margin-bottom: .2rem;
+  border-bottom: 1px solid var(--capture-line);
+}
+.capture-brand { display: flex; align-items: center; gap: .85rem; }
+.capture-mark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: #f5fffc;
+  background: #163c3c;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: 800;
+}
+.capture-brand strong { color: var(--capture-ink); font-size: 20px; letter-spacing: .06em; }
+.capture-brand strong span { color: #85a6a1; padding: 0 .2rem; }
+.capture-brand small {
+  display: block;
+  color: var(--capture-muted);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  margin-top: .2rem;
+}
+.capture-edition { color: var(--capture-muted); font-size: 10px; letter-spacing: .13em; }
+.capture-edition b { color: var(--capture-accent); margin-left: .8rem; }
+
+h1 { color: var(--capture-ink); font-size: 2rem !important; font-weight: 750 !important; letter-spacing: -.025em; }
+h2, h3 { color: var(--capture-ink); letter-spacing: -.02em; }
+h3 { font-size: 1.25rem !important; }
+[data-testid="stCaptionContainer"] { color: var(--capture-muted); }
+[data-testid="stForm"] {
+  background: #ffffff;
+  border: 1px solid var(--capture-line);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(20, 60, 58, .035);
+}
+[data-testid="stTextInput"] input,
+[data-testid="stNumberInput"] input {
+  color: var(--capture-ink);
+  font-variant-numeric: tabular-nums;
+}
+[data-testid="stButton"] button,
+[data-testid="stFormSubmitButton"] button {
+  border-radius: 9px;
+  min-height: 2.65rem;
+  font-weight: 600;
+}
+button[kind="primary"] { box-shadow: 0 3px 8px rgba(8, 126, 121, .12); }
+button:focus-visible, a:focus-visible { outline: 3px solid #47a99d !important; outline-offset: 3px; }
+button:disabled { opacity: .55; }
+[data-testid="stMetric"] {
+  background: #ffffff;
+  border: 1px solid var(--capture-line);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  height: 100%;
+}
+[data-testid="stMetricLabel"] { color: var(--capture-muted); font-size: .78rem; }
+[data-testid="stMetricValue"] { color: var(--capture-ink); font-variant-numeric: tabular-nums; }
+[data-testid="stAlert"] { border-radius: 10px; }
+[data-testid="stExpander"] { background: #ffffff; border-radius: 12px; }
+[data-testid="stImage"] img { border-radius: 10px; }
+hr { border-color: var(--capture-line); }
+
+@media (max-width: 760px) {
+  [data-testid="stMainBlockContainer"] { padding: 4.5rem 1rem 3rem; }
+  .capture-edition { display: none; }
+  .capture-brand strong { font-size: 17px; }
+  [data-testid="stForm"] { padding: 1rem; }
+  [data-testid="stMetric"] { padding: .8rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-testid="stSidebarNavLink"] { transition: none !important; }
+}

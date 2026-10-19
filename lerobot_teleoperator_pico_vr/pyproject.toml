@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lerobot_teleoperator_pico_vr"
+version = "0.1.0"
+description = "LeRobot v0.5.1 teleoperator plugin for Pico VR / IK Piper commands"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.12"
+dependencies = ["lerobot_robot_pico_piper"]
+
+[project.urls]
+Repository = "https://github.com/xdongmiao/pico-piper-teleop"
+Issues = "https://github.com/xdongmiao/pico-piper-teleop/issues"
+
+[tool.setuptools]
+packages = ["lerobot_teleoperator_pico_vr"]
+

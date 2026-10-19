@@ -1,0 +1,6 @@
+# Presentation/inspection environment; install LeRobot and plugins separately for recording.
+streamlit==1.50.0
+numpy>=1.26,<3
+pandas>=2.2,<3
+pyarrow>=14,<25
+opencv-python-headless>=4.9,<4.14

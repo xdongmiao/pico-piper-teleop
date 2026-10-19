@@ -1,0 +1,26 @@
+{
+  "top": {
+    "mode": "auto",
+    "stable_path": "",
+    "by_id": "",
+    "fallback_path": "/dev/video0",
+    "serial": "",
+    "usb_port": ""
+  },
+  "left_wrist": {
+    "mode": "auto",
+    "stable_path": "",
+    "by_id": "",
+    "fallback_path": "/dev/video2",
+    "serial": "",
+    "usb_port": ""
+  },
+  "right_wrist": {
+    "mode": "auto",
+    "stable_path": "",
+    "by_id": "",
+    "fallback_path": "/dev/video4",
+    "serial": "",
+    "usb_port": ""
+  }
+}
