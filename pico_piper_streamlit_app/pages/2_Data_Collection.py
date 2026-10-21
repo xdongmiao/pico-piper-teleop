@@ -208,7 +208,7 @@ def render_decision_panel(status) -> None:
             st.warning(verdict_msg)
         else:
             st.error(verdict_msg)
-        st.caption("这里统计的是刚刚这条 episode 录制期间的质量，不受重置时间和等待确认时间影响。松开手柄时 action 会写成当前机械臂 hold 目标，避免旧 IK 命令污染数据。")
+        st.caption("质量统计只覆盖本条录制，不含重置和确认等待。IK 目标超时或缺失时尝试反馈 hold，松开手柄不会直接触发切换；反馈回退本身未检查反馈年龄。质量提示不阻止保存，请结合有效性和年龄判断。")
         q1, q2, q3, q4 = st.columns(4)
         q1.metric("VR 有效帧", _ratio_label(quality.get("vr_valid_ratio")), _max_age_label(quality.get("max_xr_age_ms")))
         q2.metric(
@@ -323,7 +323,7 @@ def render_live() -> None:
         st.caption(f"最近恢复记录: {rt.recovery_logs[-1]}")
 
     st.subheader("三路相机")
-    st.caption("采集页面显示录制线程的最新三路图像，前端按 30fps 采集视角展示；LeRobot 数据集真实保存也是 30fps。")
+    st.caption("网页面板每 0.5 秒刷新最近图像；录制线程及相机的目标频率为 30Hz。目标频率不代表实际帧率，请查看帧年龄、有效性和调度统计。")
     img_cols = st.columns(3)
     images = status.latest_images
     for idx, name in enumerate(get_camera_bindings()):
@@ -333,7 +333,7 @@ def render_live() -> None:
             if image is not None:
                 st.image(image, channels="RGB", output_format="JPEG", width="stretch")
                 st.caption(
-                    f"display_fps={RECORDING_FPS}, save_fps={RECORDING_FPS}, "
+                    f"recording_target_fps={RECORDING_FPS}, camera_target_fps={RECORDING_FPS}, ui_refresh_s=0.5, "
                     f"age_ms={obs.get(f'cam_{name}_age_ms', 0.0):.1f}, "
                     f"valid={obs.get(f'cam_{name}_valid', 0.0):.0f}"
                 )
@@ -341,7 +341,7 @@ def render_live() -> None:
                 frame = rt.preview.latest(name)
                 if frame and frame.valid:
                     st.image(frame.image_rgb, channels="RGB", output_format="JPEG", width="stretch")
-                    st.caption(f"preview_fps={frame.fps:.1f}/20, recording_save_fps={RECORDING_FPS}")
+                    st.caption(f"preview_capture_fps={frame.fps:.1f}/20, recording_target_fps={RECORDING_FPS}, ui_refresh_s=0.5")
                 else:
                     st.warning("waiting")
 
@@ -370,7 +370,7 @@ def render_live() -> None:
                 st.line_chart(df[[f"R_{label}" for label in ACTION_NAMES]])
         latest = history[-1]
         if not latest.action_live:
-            st.info("当前 IK action topic 暂无实时命令；新采集数据会在这种情况下写入 hold action。若正在按住手柄控制，请检查 /left/control/move_j 和 /right/control/move_j。")
+            st.info("当前 IK action topic 暂无实时命令；录制会尝试反馈 hold，请结合反馈年龄和语义有效性判断。若正在按住手柄控制，请检查 /left/control/move_j 和 /right/control/move_j。")
     else:
         st.warning("waiting for telemetry")
 

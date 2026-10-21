@@ -234,7 +234,7 @@ with main_left:
 
 with main_right:
     st.subheader("三路相机预览")
-    st.caption("Web 页面三路视频按 20fps 展示，用于节约浏览器和网络带宽；LeRobot 数据集真实保存仍是 30fps。")
+    st.caption("预览线程目标为 20Hz，网页面板每 0.5 秒刷新一次；LeRobot 录制目标为 30Hz，目标频率不代表实际帧率。")
     preview_col1, preview_col2 = st.columns([1, 2])
     with preview_col1:
         if st.button("重启相机预览", width="stretch"):
@@ -254,7 +254,7 @@ with main_right:
                 st.caption(f"{binding.effective_path} · {binding.mode}")
                 if frame and frame.valid:
                     st.image(frame.image_rgb, channels="RGB", output_format="JPEG", width="stretch")
-                    st.caption(f"display_fps={frame.fps:.1f}/20, save_fps=30, age={time.time() - frame.stamp_s:.1f}s")
+                    st.caption(f"preview_capture_fps={frame.fps:.1f}/20, recording_target_fps=30, ui_refresh_s=0.5, age={time.time() - frame.stamp_s:.1f}s")
                 elif frame:
                     st.error(frame.error or "camera invalid")
                     st.caption("请先重启相机预览；如果仍失败，检查 USB Hub/线缆和相机稳定配置。")

@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Align the English/Chinese READMEs, installation guide and component docs with the published implementation; add an operation guide and source map.
+- Document fixed paths, separate Python environments, FFmpeg/ffprobe, camera binding and CAN USB mapping requirements.
+- Correct display text about capture targets, browser refresh, action fallback and limited dataset checks. Preserve controls, callbacks, timing, recorder/validator logic, ROS topics, action/observation fields and robot control.
+- Refresh only page-file integrity hashes for these explanatory text changes; retain the other behavior baselines.
+
 ## 0.1.0 — 2026-10-19
 
 - Publish a source-only Pico/PiPER teleoperation and data-capture distribution.
